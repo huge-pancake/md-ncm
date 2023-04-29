@@ -1,0 +1,42 @@
+@import './baseline.css';
+@import './fonts.css';
+@import './material-you.css';
+
+header {
+  padding: 20px;
+}
+main {
+  padding: 20px;
+}
+
+#router-progress {
+  margin-top: -4px;
+}
+
+#search-input {
+  margin: 20px 0;
+}
+
+#search-list {
+  width: 100%;
+}
+#search-list li {
+  list-style: none;
+  background: var(--md-color-surface-variant);
+  color: var(--md-color-on-surface);
+  padding: 16px;
+
+  font-family: var(--md-v2-title-m-font-family);
+  font-size: var(--md-v2-title-m-font-size);
+  font-weight: var(--md-v2-title-m-font-weight);
+  letter-spacing: var(--md-v2-title-m-letter-spacing);
+  line-height: var(--md-v2-title-m-line-height);
+  font-variation-settings: 'GRAD' var(--md-v2-title-m-font-variation-GRAD),
+    'opsz' var(--md-v2-title-m-font-variation-opsz);
+}
+#search-list li:first-child {
+  border-radius: 16px 16px 0 0;
+}
+#search-list li:last-child {
+  border-radius: 0 0 16px 16px;
+}

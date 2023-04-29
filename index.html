@@ -1,16 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark-mode green">
   <head>
     <title>Netease Cloud Music</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/assets/netease-cloud-music.svg"
+    />
     <script type="module" src="/app.ts"></script>
+    <link rel="stylesheet" type="text/css" href="/styles/main.css" />
   </head>
   <body>
     <header>
       <a router-link href="/">Home</a>
       <a router-link href="/about">About</a>
-      <span id="router-progressbar">Loading...</span>
+      <a router-link href="/search">Search</a>
+      <div class="md-linear-progress" id="router-progress">
+        <div class="md-linear-progress__bar md-linear-progress__primary-bar">
+          <span class="md-linear-progress__bar-inner"></span>
+        </div>
+        <div class="md-linear-progress__bar md-linear-progress__secondary-bar">
+          <span class="md-linear-progress__bar-inner"></span>
+        </div>
+      </div>
     </header>
     <main>
       <div id="router-view"></div>

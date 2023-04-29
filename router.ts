@@ -9,8 +9,8 @@ export type ParsedURL = {
 export type ViewInfoList = { [str: string]: string };
 
 export type View = {
-  render: (location: string, parsedURL: ParsedURL) => string;
-  afterRender: (location: string, parsedURL: ParsedURL) => void;
+  render(location: string, parsedURL: ParsedURL): string;
+  afterRender(location: string, parsedURL: ParsedURL): void;
 };
 
 export class Router {
@@ -31,7 +31,7 @@ export class Router {
     this.viewEl = view;
     this.progressEl = progressbar;
 
-    window.addEventListener('click', this.handleWindowClick);
+    window.addEventListener('click', this.handleWindowClick.bind(this));
     window.addEventListener('popstate', this.render);
 
     this.render();

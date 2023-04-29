@@ -10,6 +10,7 @@ export default {
     'views/404-view': './views/404-view.ts',
     'views/about-view': './views/about-view.ts',
     'views/home-view': './views/home-view.ts',
+    'views/search-view': './views/search-view.ts',
   },
   output: {
     dir: './dist',
