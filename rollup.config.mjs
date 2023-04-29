@@ -17,6 +17,11 @@ export default {
     sourcemap: true,
   },
   plugins: [
+    // .js is for vercel deployment and .ts is for web-dev-server, if not so,
+    // vercel can't work because the code which imports these views points to
+    // .ts files and they're strings so that rollup can't auto change them to
+    // strings with .js
+    // *see ./app.ts > row 3 | const views
     replace({
       preventAssignment: true,
       values: {

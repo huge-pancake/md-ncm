@@ -6,23 +6,30 @@ export type ParsedURL = {
   c: string;
 };
 
+export type ViewInfoList = { [str: string]: string };
+
+export type View = {
+  render: (location: string, parsedURL: ParsedURL) => string;
+  afterRender: (location: string, parsedURL: ParsedURL) => void;
+};
+
 export class Router {
-  pages: any;
-  view: HTMLElement | undefined;
-  progressbar: HTMLElement | undefined;
+  viewInfoList: ViewInfoList | undefined;
+  viewEl: HTMLElement | undefined;
+  progressEl: HTMLElement | undefined;
 
   constructor({
-    pages,
-    view,
-    progressbar,
+    viewInfoList: pages,
+    viewEl: view,
+    progressEl: progressbar,
   }: {
-    pages: any;
-    view: HTMLElement;
-    progressbar?: HTMLElement;
+    viewInfoList: ViewInfoList;
+    viewEl: HTMLElement;
+    progressEl?: HTMLElement;
   }) {
-    this.pages = pages;
-    this.view = view;
-    this.progressbar = progressbar;
+    this.viewInfoList = pages;
+    this.viewEl = view;
+    this.progressEl = progressbar;
 
     window.addEventListener('click', this.handleWindowClick);
     window.addEventListener('popstate', this.render);
@@ -52,32 +59,35 @@ export class Router {
   };
 
   render = async () => {
-    if (!this.view) {
-      Logger.error('router', 'Need view element to render in');
+    if (!this.viewEl) {
+      Logger.error('Router', 'Need view element to render in');
       return;
     }
 
-    this.progressbar?.removeAttribute('hidden');
+    this.progressEl?.removeAttribute('hidden');
 
     const parsedURL = this.parseURL();
-    Logger.info('router', 'Got parsed URL', parsedURL);
+    Logger.info('Router', 'Got parsed URL', parsedURL);
 
     const location =
       (parsedURL.a ? '/' + parsedURL.a : '/') +
       (parsedURL.b ? '/:id' : '') +
       (parsedURL.c ? '/' + parsedURL.c : '');
-    Logger.info('router', 'Got location', location);
+    Logger.info('Router', 'Got location', location);
 
-    const page = this.pages[location] || this.pages[404];
-    Logger.info('router', 'Fetching page', page);
+    const viewInfo = this.viewInfoList[location] || this.viewInfoList[404];
+    Logger.info('Router', 'Got view info and fetching', viewInfo);
 
-    import(page).then((_page) => {
-      const data = _page.default.render(location, parsedURL);
+    import(viewInfo).then((_view) => {
+      const view = _view.default as View;
 
-      this.view.innerHTML = data;
+      const renderedHTML = view.render(location, parsedURL);
+
+      this.viewEl.innerHTML = renderedHTML;
+      view.afterRender?.(location, parsedURL);
+
       document.title = document.querySelector('h1')?.textContent!;
-      page.afterRender?.();
-      this.progressbar?.setAttribute('hidden', '');
+      this.progressEl?.setAttribute('hidden', '');
       this.updateLinkState(location);
     });
   };
