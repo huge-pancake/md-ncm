@@ -6,7 +6,7 @@ const pages = {
   '/about': './views/about-view.ts',
 };
 
-const router = new Router({
+new Router({
   pages: pages,
   view: document.querySelector('#router-view') as HTMLElement,
   progressbar: document.querySelector('#router-progressbar') as HTMLElement,

@@ -10,6 +10,7 @@
   "license": "MIT",
   "author": "huge-pancake",
   "scripts": {
+    "build": "rollup --config",
     "dev": "wds",
     "lint": "pnpm lint:eslint && pnpm lint:prettier",
     "lint:eslint": "eslint --fix",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-terser": "^0.4.1",
     "@rollup/plugin-typescript": "^11.1.0",
     "@web/dev-server": "^0.2.1",
     "@web/dev-server-esbuild": "^0.4.1",
