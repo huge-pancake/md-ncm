@@ -10,13 +10,23 @@
   "license": "MIT",
   "author": "huge-pancake",
   "scripts": {
-    "dev": "wds"
+    "dev": "wds",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier",
+    "lint:eslint": "eslint --fix",
+    "lint:prettier": "prettier . --check",
+    "prettier": "prettier . --write"
   },
   "dependencies": {
     "NeteaseCloudMusicApi": "^4.8.10"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-typescript": "^11.1.0",
     "@web/dev-server": "^0.2.1",
-    "@web/dev-server-esbuild": "^0.4.1"
+    "@web/dev-server-esbuild": "^0.4.1",
+    "@web/rollup-plugin-html": "^2.0.0",
+    "eslint": "^8.39.0",
+    "prettier": "^2.8.8",
+    "rollup": "^3.21.1"
   }
 }
