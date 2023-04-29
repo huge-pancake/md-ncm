@@ -6,9 +6,9 @@ import terser from '@rollup/plugin-terser';
 export default {
   input: {
     app: './app.ts',
-    'views/404-view': './views/404-view.ts',
-    'views/about-view': './views/about-view.ts',
-    'views/home-view': './views/home-view.ts',
+    'views/404-view': './views/404-view.js',
+    'views/about-view': './views/about-view.js',
+    'views/home-view': './views/home-view.js',
   },
   output: {
     dir: './dist',
