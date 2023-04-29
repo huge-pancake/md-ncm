@@ -37,7 +37,7 @@ export class Router {
     this.render();
   }
 
-  parseURL = (): ParsedURL => {
+  parseURL(): ParsedURL {
     let url = location.pathname.slice(1).toLowerCase() || '/';
     let r = url.split('/');
     let parsedURL = {
@@ -47,18 +47,18 @@ export class Router {
     };
 
     return parsedURL;
-  };
+  }
 
-  updateLinkState = (location: string): void => {
+  updateLinkState(location: string): void {
     document
       .querySelectorAll('[router-active]')
       .forEach((el) => el.removeAttribute('router-active'));
     document
       .querySelectorAll(`[href="${location}"]`)
       .forEach((el) => el.setAttribute('router-active', ''));
-  };
+  }
 
-  render = async () => {
+  async render(): Promise<void> {
     if (!this.viewEl) {
       Logger.error('Router', 'Need view element to render in');
       return;
@@ -90,15 +90,15 @@ export class Router {
       this.progressEl?.setAttribute('hidden', '');
       this.updateLinkState(location);
     });
-  };
+  }
 
-  route = (link: string) => {
+  route(link: string): void {
     window.history.pushState({ page: window.location.pathname }, '', link);
     this.render();
-  };
+  }
 
   // NOTE: Maybe cause perf problem
-  handleWindowClick = (e: MouseEvent) => {
+  handleWindowClick(e: MouseEvent): void {
     let temp: HTMLElement | null = e.target as HTMLElement;
     do {
       if (temp.hasAttribute('router-link')) {
@@ -107,5 +107,5 @@ export class Router {
         break;
       } else temp = temp.parentNode as HTMLElement | null;
     } while (temp?.hasAttribute);
-  };
+  }
 }

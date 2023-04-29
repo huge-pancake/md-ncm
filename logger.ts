@@ -6,13 +6,13 @@ export default class Logger {
     localStorage.setItem('debug', value ? 'true' : 'false');
   }
 
-  static info = (unitName: string, ...contents: any[]) => {
+  static info(unitName: string, ...contents: any[]) {
     if (this.debug) console.log(`[${unitName}]`, ...contents);
-  };
-  static warn = (unitName: string, ...contents: any[]) => {
+  }
+  static warn(unitName: string, ...contents: any[]) {
     console.warn(`[${unitName}]`, ...contents);
-  };
-  static error = (unitName: string, ...contents: any[]) => {
+  }
+  static error(unitName: string, ...contents: any[]) {
     console.error(`[${unitName}]`, ...contents);
-  };
+  }
 }
