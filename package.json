@@ -1,8 +1,12 @@
 {
   "name": "md-ncm",
   "version": "0.0.1",
-  "description": "",
-  "keywords": [],
+  "description": "Netease Cloud Music in Material You design.",
+  "keywords": [
+    "netease-cloud-music",
+    "material-you",
+    "material-design"
+  ],
   "license": "MIT",
   "author": "huge-pancake",
   "scripts": {
