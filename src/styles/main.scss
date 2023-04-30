@@ -120,6 +120,13 @@ main {
   padding: 20px;
 }
 
+[router-active] {
+  background-color: rgba(
+    var(--md-sys-color-primary-rgb),
+    var(--md-sys-state-drag)
+  );
+}
+
 #router-progress {
   margin-top: -4px;
 }

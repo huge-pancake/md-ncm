@@ -1,10 +1,41 @@
 .md-button {
+  position: relative;
+  padding: 0 12px;
+  min-width: 64px;
+  height: 40px;
+  background-color: transparent;
+  color: var(--md-sys-color-primary);
+  border: 0;
+  outline: 0;
+  border-radius: 9999px;
+  cursor: pointer;
+
   font-family: var(--md-sys-typo-label-l-font-family);
   font-size: var(--md-sys-typo-label-l-font-size);
   line-height: var(--md-sys-typo-label-l-line-height);
   font-weight: var(--md-sys-typo-label-l-font-weight);
   letter-spacing: var(--md-sys-typo-label-l-letter-spacing);
   text-transform: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: currentColor;
+    border-radius: inherit;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 100ms cubic-bezier(0.2, 0, 0, 1);
+  }
+  &:hover::before {
+    opacity: var(--md-sys-state-hover);
+  }
+  &:focus-visible::before {
+    opacity: var(--md-sys-state-focus);
+  }
+  &:active::before {
+    opacity: var(--md-sys-state-press);
+  }
 }
 
 .md-text-field {

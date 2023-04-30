@@ -58,12 +58,13 @@ export class Router {
 
     this.progressEl?.removeAttribute('hidden');
 
-    const subpath = location.pathname.slice(1).toLowerCase() || '/';
+    const subpath = location.pathname.slice(1).toLowerCase();
     const urlSegments = subpath.split('/');
     Logger.info('Router', 'Got URL segments', urlSegments);
 
     const viewEntry =
-      (urlSegments[0] ? '/' + urlSegments[0] : '/') +
+      '/' +
+      (urlSegments[0] ? urlSegments[0] : '') +
       (urlSegments[1] ? '/:id' : '') +
       (urlSegments[2] ? '/' + urlSegments[3] : '');
     Logger.info('Router', 'Got view entry', viewEntry);
@@ -94,8 +95,7 @@ export class Router {
 
       document.title = document.querySelector('h1')?.textContent!;
       this.progressEl?.setAttribute('hidden', '');
-      // FIXME: /comps/aaa doesn't match /comps/:id
-      this.updateLinkState(viewEntry);
+      this.updateLinkState('/' + subpath);
     });
   }
 
