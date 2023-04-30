@@ -26,7 +26,6 @@ export default {
       minify: true,
     }),
     postcss({
-      modules: true,
       minimize: true,
     }),
 
