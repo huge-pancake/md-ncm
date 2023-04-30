@@ -1,4 +1,6 @@
 import { MdOutlinedTextField } from '@material/web/textfield/outlined-text-field.js';
+import '@material/web/list/list.js';
+import '@material/web/list/list-item.js';
 
 import Logger from '../logger.js';
 import { ViewRendererParams } from '../router.js';
@@ -23,9 +25,9 @@ export default {
         value="${decodeURI(params.urlSegments[1] || '')}"
       ></md-outlined-text-field>
 
-      <ul id="search-list">
+      <md-list id="search-list">
         ${params.urlSegments[1] ? 'Loading...' : ''}
-      </ul>
+      </md-list>
     `;
   },
   async afterRender(params: ViewRendererParams) {
@@ -53,10 +55,13 @@ export default {
       searchListEl.innerHTML = '';
 
       (jsonData.result.songs as Song[]).forEach((song) => {
-        let el = document.createElement('li');
-        el.textContent = `${song.name} -${song.artists.map(
+        let el = document.createElement('md-list-item');
+        el.headline = song.name;
+        el.supportingText = `${song.artists.map(
           (artist) => ` ${artist.name}`
-        )} - ${song.album.name}`;
+        )} - ${song.album.name}${
+          song.album.alia ? ' (' + song.album.alia + ')' : ''
+        }`;
         searchListEl.appendChild(el);
       });
     }

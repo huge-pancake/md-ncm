@@ -135,35 +135,24 @@ md-linear-progress {
 }
 
 #search-input {
-  margin: 20px 0;
+  margin: 20px 0 10px 0;
 }
 
 #search-list {
-  width: 100%;
+  border-radius: 16px;
 
-  li {
-    list-style: none;
-    background: var(--md-sys-color-surface-variant);
-    color: var(--md-sys-color-on-surface);
+  md-list-item {
+    display: flex;
     margin: 4px 0;
-    padding: 16px;
-    border-radius: 4px;
-
-    font-family: var(--md-sys-typo-title-m-font-family);
-    font-size: var(--md-sys-typo-title-m-font-size);
-    font-weight: var(--md-sys-typo-title-m-font-weight);
-    letter-spacing: var(--md-sys-typo-title-m-letter-spacing);
-    line-height: var(--md-sys-typo-title-m-line-height);
-    font-variation-settings: 'GRAD'
-        var(--md-sys-typo-title-m-font-variation-GRAD),
-      'opsz' var(--md-sys-typo-title-m-font-variation-opsz);
+    --_list-item-container-shape: 4px;
+    --_list-item-container-color: var(--md-sys-color-surface-variant);
 
     &:first-child {
-      border-radius: 16px 16px 4px 4px;
+      --_list-item-container-shape: 24px 24px 4px 4px;
     }
 
     &:last-child {
-      border-radius: 4px 4px 16px 16px;
+      --_list-item-container-shape: 4px 4px 24px 24px;
     }
   }
 }
