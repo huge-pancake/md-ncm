@@ -11,6 +11,7 @@
   "author": "huge-pancake",
   "scripts": {
     "build": "rollup --config",
+    "build:watch": "rollup --config --watch",
     "dev": "wds",
     "lint": "pnpm lint:eslint && pnpm lint:prettier",
     "lint:eslint": "eslint --fix",
@@ -22,11 +23,13 @@
     "@rollup/plugin-replace": "^5.0.2",
     "@rollup/plugin-terser": "^0.4.1",
     "@rollup/plugin-typescript": "^11.1.0",
-    "@web/dev-server": "^0.2.1",
-    "@web/dev-server-esbuild": "^0.4.1",
     "@web/rollup-plugin-html": "^2.0.0",
     "eslint": "^8.39.0",
     "prettier": "^2.8.8",
-    "rollup": "^3.21.1"
+    "rollup": "^3.21.1",
+    "sass": "^1.62.1"
+  },
+  "dependencies": {
+    "rollup-plugin-postcss": "^4.0.2"
   }
 }

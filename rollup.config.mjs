@@ -1,8 +1,11 @@
-import { rollupPluginHTML as html } from '@web/rollup-plugin-html';
+import path from 'path';
+
 import replace from '@rollup/plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 import terser from '@rollup/plugin-terser';
+import { rollupPluginHTML as html } from '@web/rollup-plugin-html';
+import postcss from 'rollup-plugin-postcss';
 
 export default {
   input: {
@@ -18,6 +21,15 @@ export default {
     sourcemap: true,
   },
   plugins: [
+    html({
+      input: ['./index.html'],
+      minify: true,
+    }),
+    postcss({
+      modules: true,
+      minimize: true,
+    }),
+
     // .js is for vercel deployment and .ts is for web-dev-server, if not so,
     // vercel can't work because the code which imports these views points to
     // .ts files and they're strings so that rollup can't auto change them to
@@ -37,9 +49,6 @@ export default {
       output: {
         comments: false,
       },
-    }),
-    html({
-      input: ['./index.html'],
     }),
   ],
 };

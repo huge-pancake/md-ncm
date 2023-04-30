@@ -13,3 +13,5 @@ export const router = new Router({
   viewEl: document.querySelector('#router-view') as HTMLElement,
   progressEl: document.querySelector('#router-progress') as HTMLElement,
 });
+
+import './styles/main.scss';
