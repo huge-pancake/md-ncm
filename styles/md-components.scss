@@ -1,9 +1,9 @@
 .md-button {
-  font-family: var(--md-typo-label-l-font-family);
-  font-size: var(--md-typo-label-l-font-size);
-  line-height: var(--md-typo-label-l-line-height);
-  font-weight: var(--md-typo-label-l-font-weight);
-  letter-spacing: var(--md-typo-label-l-letter-spacing);
+  font-family: var(--md-sys-typo-label-l-font-family);
+  font-size: var(--md-sys-typo-label-l-font-size);
+  line-height: var(--md-sys-typo-label-l-line-height);
+  font-weight: var(--md-sys-typo-label-l-font-weight);
+  letter-spacing: var(--md-sys-typo-label-l-letter-spacing);
   text-transform: none;
 }
 
@@ -12,24 +12,24 @@
   width: 25ch;
   height: 56px;
   background-color: transparent;
-  border: 1px solid var(--md-color-outline);
+  border: 1px solid var(--md-sys-color-outline);
   border-radius: 4px;
   outline: 0;
 
   transition: padding 100ms cubic-bezier(0.2, 0, 0, 1),
     border 100ms cubic-bezier(0.2, 0, 0, 1);
 
-  font-family: var(--md-typo-body-l-font-family);
-  font-size: var(--md-typo-body-l-font-size);
-  font-weight: var(--md-typo-body-l-font-weight);
-  letter-spacing: var(--md-typo-body-l-letter-spacing);
-  line-height: var(--md-typo-body-l-line-height);
-  font-variation-settings: 'GRAD' var(--md-typo-body-l-font-variation-GRAD),
-    'opsz' var(--md-typo-body-l-font-variation-opsz);
+  font-family: var(--md-sys-typo-body-l-font-family);
+  font-size: var(--md-sys-typo-body-l-font-size);
+  font-weight: var(--md-sys-typo-body-l-font-weight);
+  letter-spacing: var(--md-sys-typo-body-l-letter-spacing);
+  line-height: var(--md-sys-typo-body-l-line-height);
+  font-variation-settings: 'GRAD' var(--md-sys-typo-body-l-font-variation-GRAD),
+    'opsz' var(--md-sys-typo-body-l-font-variation-opsz);
 }
 .md-text-field:focus {
   padding: 0 15px;
-  border: 2px solid var(--md-color-primary);
+  border: 2px solid var(--md-sys-color-primary);
 }
 
 .md-linear-progress {

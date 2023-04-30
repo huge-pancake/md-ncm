@@ -133,19 +133,20 @@ main {
 
   li {
     list-style: none;
-    background: var(--md-color-surface-variant);
-    color: var(--md-color-on-surface);
+    background: var(--md-sys-color-surface-variant);
+    color: var(--md-sys-color-on-surface);
     margin: 4px 0;
     padding: 16px;
     border-radius: 4px;
 
-    font-family: var(--md-typo-title-m-font-family);
-    font-size: var(--md-typo-title-m-font-size);
-    font-weight: var(--md-typo-title-m-font-weight);
-    letter-spacing: var(--md-typo-title-m-letter-spacing);
-    line-height: var(--md-typo-title-m-line-height);
-    font-variation-settings: 'GRAD' var(--md-typo-title-m-font-variation-GRAD),
-      'opsz' var(--md-typo-title-m-font-variation-opsz);
+    font-family: var(--md-sys-typo-title-m-font-family);
+    font-size: var(--md-sys-typo-title-m-font-size);
+    font-weight: var(--md-sys-typo-title-m-font-weight);
+    letter-spacing: var(--md-sys-typo-title-m-letter-spacing);
+    line-height: var(--md-sys-typo-title-m-line-height);
+    font-variation-settings: 'GRAD'
+        var(--md-sys-typo-title-m-font-variation-GRAD),
+      'opsz' var(--md-sys-typo-title-m-font-variation-opsz);
 
     &:first-child {
       border-radius: 16px 16px 4px 4px;
