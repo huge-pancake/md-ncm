@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-md-theme="dark">
+<html lang="en" data-md-theme="system">
   <head>
     <title>Netease Cloud Music</title>
     <meta charset="UTF-8" />
@@ -15,25 +15,30 @@
   </head>
   <body>
     <header>
-      <a router-link href="/">Home</a>
-      <a router-link href="/about">About</a>
-      <a router-link href="/search">Search</a>
+      <md-text-button router-link href="/">
+        <md-icon slot="icon">home</md-icon>
+        Home
+      </md-text-button>
+      <md-text-button router-link href="/about">
+        <md-icon slot="icon">info</md-icon>
+        About
+      </md-text-button>
+      <md-text-button router-link href="/search">
+        <md-icon slot="icon">search</md-icon>
+        Search
+      </md-text-button>
 
-      <button
-        class="md-button"
+      <md-text-button
         onclick="localStorage.setItem('debug', localStorage.getItem('debug') !== 'true' ? 'true' : 'false')"
       >
+        <md-icon slot="icon">settings</md-icon>
         Toggle Debug
-      </button>
+      </md-text-button>
 
-      <div class="md-linear-progress" id="router-progress">
-        <div class="md-linear-progress__bar md-linear-progress__primary-bar">
-          <span class="md-linear-progress__bar-inner"></span>
-        </div>
-        <div class="md-linear-progress__bar md-linear-progress__secondary-bar">
-          <span class="md-linear-progress__bar-inner"></span>
-        </div>
-      </div>
+      <md-linear-progress
+        id="router-progress"
+        indeterminate
+      ></md-linear-progress>
     </header>
     <main>
       <div id="router-view"></div>

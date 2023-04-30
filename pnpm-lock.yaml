@@ -1,6 +1,12 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@material/web':
+    specifier: 1.0.0-pre.7
+    version: registry.npmmirror.com/@material/web@1.0.0-pre.7
+  lit:
+    specifier: ^2.7.3
+    version: registry.npmmirror.com/lit@2.7.3
   rollup-plugin-postcss:
     specifier: ^4.0.2
     version: registry.npmmirror.com/rollup-plugin-postcss@4.0.2(postcss@8.4.23)
@@ -338,6 +344,30 @@ packages:
     version: 1.2.1
     dev: true
 
+  registry.npmmirror.com/@lit-labs/ssr-dom-shim@1.1.1:
+    resolution: {integrity: sha512-kXOeFbfCm4fFf2A3WwVEeQj55tMZa8c8/f9AKHMobQMkzNUfUj+antR3fRPaZJawsa1aZiP/Da3ndpZrwEe4rQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@lit-labs/ssr-dom-shim/-/ssr-dom-shim-1.1.1.tgz}
+    name: '@lit-labs/ssr-dom-shim'
+    version: 1.1.1
+    dev: false
+
+  registry.npmmirror.com/@lit/reactive-element@1.6.1:
+    resolution: {integrity: sha512-va15kYZr7KZNNPZdxONGQzpUr+4sxVu7V/VG7a8mRfPPXUyhEYj5RzXCQmGrlP3tAh0L3HHm5AjBMFYRqlM9SA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@lit/reactive-element/-/reactive-element-1.6.1.tgz}
+    name: '@lit/reactive-element'
+    version: 1.6.1
+    dependencies:
+      '@lit-labs/ssr-dom-shim': registry.npmmirror.com/@lit-labs/ssr-dom-shim@1.1.1
+    dev: false
+
+  registry.npmmirror.com/@material/web@1.0.0-pre.7:
+    resolution: {integrity: sha512-/gHoUq+7Iose64BGyBurSXkAwVv4PNdAawX4SJkeDUObUPgvLH5vZBD8/fVGWu7TEq0xSgh10uqwV81P5r5BAw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@material/web/-/web-1.0.0-pre.7.tgz}
+    name: '@material/web'
+    version: 1.0.0-pre.7
+    dependencies:
+      lit: registry.npmmirror.com/lit@2.7.3
+      safevalues: registry.npmmirror.com/safevalues@0.4.3
+      tslib: registry.npmmirror.com/tslib@2.5.0
+    dev: false
+
   registry.npmmirror.com/@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz}
     name: '@nodelib/fs.scandir'
@@ -370,6 +400,12 @@ packages:
     name: '@trysound/sax'
     version: 0.2.0
     engines: {node: '>=10.13.0'}
+    dev: false
+
+  registry.npmmirror.com/@types/trusted-types@2.0.3:
+    resolution: {integrity: sha512-NfQ4gyz38SL8sDNrSixxU2Os1a5xcdFxipAFxYEuLUlvU2uDwS4NUpsImcf1//SlWItCVMMLiylsxbmNMToV/g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/trusted-types/-/trusted-types-2.0.3.tgz}
+    name: '@types/trusted-types'
+    version: 2.0.3
     dev: false
 
   registry.npmmirror.com/acorn-jsx@5.3.2(acorn@8.8.2):
@@ -1294,6 +1330,34 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
+  registry.npmmirror.com/lit-element@3.3.2:
+    resolution: {integrity: sha512-xXAeVWKGr4/njq0rGC9dethMnYCq5hpKYrgQZYTzawt9YQhMiXfD+T1RgrdY3NamOxwq2aXlb0vOI6e29CKgVQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lit-element/-/lit-element-3.3.2.tgz}
+    name: lit-element
+    version: 3.3.2
+    dependencies:
+      '@lit-labs/ssr-dom-shim': registry.npmmirror.com/@lit-labs/ssr-dom-shim@1.1.1
+      '@lit/reactive-element': registry.npmmirror.com/@lit/reactive-element@1.6.1
+      lit-html: registry.npmmirror.com/lit-html@2.7.3
+    dev: false
+
+  registry.npmmirror.com/lit-html@2.7.3:
+    resolution: {integrity: sha512-9DyLzcn/kbRGowz2vFmSANFbRZTxYUgYYFqzie89w6GLpPUiBCDHfcdeRUV/k3Q2ueYxNjfv46yPCtKAEAPOVw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lit-html/-/lit-html-2.7.3.tgz}
+    name: lit-html
+    version: 2.7.3
+    dependencies:
+      '@types/trusted-types': registry.npmmirror.com/@types/trusted-types@2.0.3
+    dev: false
+
+  registry.npmmirror.com/lit@2.7.3:
+    resolution: {integrity: sha512-0a+u+vVbmgSfPu+fyvqjMPBX0Kwbyj9QOv9MbQFZhWGlV2cyk3lEwgfUQgYN+i/lx++1Z3wZknSIp3QCKxHLyg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lit/-/lit-2.7.3.tgz}
+    name: lit
+    version: 2.7.3
+    dependencies:
+      '@lit/reactive-element': registry.npmmirror.com/@lit/reactive-element@1.6.1
+      lit-element: registry.npmmirror.com/lit-element@3.3.2
+      lit-html: registry.npmmirror.com/lit-html@2.7.3
+    dev: false
+
   registry.npmmirror.com/loader-utils@3.2.1:
     resolution: {integrity: sha512-ZvFw1KWS3GVyYBYb7qkmRM/WwL2TQQBxgCK62rlvm4WpVQ23Nb4tYjApUlfjrEGvOs7KHEsmyUn75OHZrJMWPw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/loader-utils/-/loader-utils-3.2.1.tgz}
     name: loader-utils
@@ -2141,6 +2205,12 @@ packages:
     version: 0.4.2
     dev: false
 
+  registry.npmmirror.com/safevalues@0.4.3:
+    resolution: {integrity: sha512-pNCNTkx3xs7G5YJ/9CoeZZVUSPRjH0SEPM0QI5Z1FZRlLBviTFWlNKPs8PTvZvERV0gO7ie/t/Zc0S96JS4Xew==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/safevalues/-/safevalues-0.4.3.tgz}
+    name: safevalues
+    version: 0.4.3
+    dev: false
+
   registry.npmmirror.com/sass@1.62.1:
     resolution: {integrity: sha512-NHpxIzN29MXvWiuswfc1W3I0N8SXBd8UR26WntmDlRYf0bSADnwnOjsyMZ3lMezSlArD33Vs3YFhp7dWvL770A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/sass/-/sass-1.62.1.tgz}
     name: sass
@@ -2277,6 +2347,12 @@ packages:
     dependencies:
       is-number: registry.npmmirror.com/is-number@7.0.0
     dev: true
+
+  registry.npmmirror.com/tslib@2.5.0:
+    resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/tslib/-/tslib-2.5.0.tgz}
+    name: tslib
+    version: 2.5.0
+    dev: false
 
   registry.npmmirror.com/type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/type-check/-/type-check-0.4.0.tgz}

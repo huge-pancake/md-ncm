@@ -1,3 +1,5 @@
+import { MdOutlinedTextField } from '@material/web/textfield/outlined-text-field.js';
+
 import Logger from '../logger.js';
 import { ViewRendererParams } from '../router.js';
 
@@ -15,12 +17,11 @@ export default {
         }
       </h1>
 
-      <input
-        class="md-text-field"
+      <md-outlined-text-field
         id="search-input"
-        placeholder="Search"
+        label="Search"
         value="${decodeURI(params.urlSegments[1] || '')}"
-      />
+      ></md-outlined-text-field>
 
       <ul id="search-list">
         ${params.urlSegments[1] ? 'Loading...' : ''}
@@ -30,7 +31,7 @@ export default {
   async afterRender(params: ViewRendererParams) {
     const searchInputEl = document.querySelector(
       '#search-input'
-    ) as HTMLInputElement;
+    ) as MdOutlinedTextField;
     searchInputEl.addEventListener('keydown', (e: KeyboardEvent) => {
       if (e.code === 'Enter') {
         router.route(`/search/${searchInputEl.value}`);

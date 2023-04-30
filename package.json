@@ -26,6 +26,8 @@
     "vite": "^4.3.3"
   },
   "dependencies": {
+    "@material/web": "1.0.0-pre.7",
+    "lit": "^2.7.3",
     "rollup-plugin-postcss": "^4.0.2"
   }
 }

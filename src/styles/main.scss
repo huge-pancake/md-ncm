@@ -1,6 +1,7 @@
 @import './md-main.scss';
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined');
 
 [data-md-theme] {
   --md-sys-color-primary-rgb-dark: 255, 179, 178;
@@ -120,15 +121,17 @@ main {
   padding: 20px;
 }
 
-[router-active] {
-  background-color: rgba(
-    var(--md-sys-color-primary-rgb),
-    var(--md-sys-state-drag)
-  );
+md-text-button[router-active] {
+  --md-text-button-label-text-type: 700 0.875rem/1.25rem 'Roboto';
 }
 
-#router-progress {
-  margin-top: -4px;
+md-linear-progress {
+  --md-linear-progress-track-shape: 9999px;
+  transition: opacity 15ms linear 0s;
+
+  &[hidden] {
+    opacity: 0;
+  }
 }
 
 #search-input {
