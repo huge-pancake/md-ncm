@@ -1,29 +1,33 @@
 import Logger from '../logger.js';
-import { ParsedURL } from '../router.js';
+import { ViewRendererParams } from '../router.js';
 
 import { request, Song } from '../api.js';
 import { router } from '../app.js';
 
 export default {
-  render(location: string, parsedURL: ParsedURL) {
+  render(params: ViewRendererParams) {
     return `
       <h1>
-        Search${parsedURL.b ? ' result of ' + decodeURI(parsedURL.b) : ''}
+        Search${
+          params.urlSegments[1]
+            ? ' result of ' + decodeURI(params.urlSegments[1])
+            : ''
+        }
       </h1>
 
       <input
         class="md-text-field"
         id="search-input"
         placeholder="Search"
-        value="${decodeURI(parsedURL.b || '')}"
+        value="${decodeURI(params.urlSegments[1] || '')}"
       />
 
       <ul id="search-list">
-        ${parsedURL.b ? 'Loading...' : ''}
+        ${params.urlSegments[1] ? 'Loading...' : ''}
       </ul>
     `;
   },
-  async afterRender(location: string, parsedURL: ParsedURL) {
+  async afterRender(params: ViewRendererParams) {
     const searchInputEl = document.querySelector(
       '#search-input'
     ) as HTMLInputElement;
@@ -34,10 +38,14 @@ export default {
     });
     searchInputEl.focus();
 
-    if (parsedURL.b) {
-      const searchListEl = document.querySelector('#search-list');
+    if (params.urlSegments[1]) {
+      const searchListEl = document.querySelector(
+        '#search-list'
+      ) as HTMLUListElement;
 
-      const response = await request(`/search?keywords=${parsedURL.b}`);
+      const response = await request(
+        `/search?keywords=${params.urlSegments[1]}`
+      );
       const jsonData = await response.json();
       Logger.info('Search', jsonData);
 

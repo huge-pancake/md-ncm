@@ -1,16 +1,16 @@
 import Logger from './logger.js';
 
-export type ParsedURL = {
-  a: string;
-  b: string;
-  c: string;
-};
-
 export type ViewInfoList = { [str: string]: string };
 
+export type ViewRendererParams = {
+  subpath: string;
+  viewEntry: string;
+  urlSegments: string[];
+};
+
 export type View = {
-  render(location: string, parsedURL: ParsedURL): string;
-  afterRender(location: string, parsedURL: ParsedURL): void;
+  render(params: ViewRendererParams): string;
+  afterRender(params: ViewRendererParams): void;
 };
 
 export class Router {
@@ -37,18 +37,6 @@ export class Router {
     this.render();
   }
 
-  parseURL(): ParsedURL {
-    let url = location.pathname.slice(1).toLowerCase() || '/';
-    let r = url.split('/');
-    let parsedURL = {
-      a: r[0],
-      b: r[1],
-      c: r[2],
-    };
-
-    return parsedURL;
-  }
-
   updateLinkState(location: string): void {
     document
       .querySelectorAll('[router-active]')
@@ -59,6 +47,10 @@ export class Router {
   }
 
   async render(): Promise<void> {
+    if (!this.viewInfoList) {
+      Logger.error('Router', 'Need view info list to get view page');
+      return;
+    }
     if (!this.viewEl) {
       Logger.error('Router', 'Need view element to render in');
       return;
@@ -66,29 +58,44 @@ export class Router {
 
     this.progressEl?.removeAttribute('hidden');
 
-    const parsedURL = this.parseURL();
-    Logger.info('Router', 'Got parsed URL', parsedURL);
+    const subpath = location.pathname.slice(1).toLowerCase() || '/';
+    const urlSegments = subpath.split('/');
+    Logger.info('Router', 'Got URL segments', urlSegments);
 
-    const location =
-      (parsedURL.a ? '/' + parsedURL.a : '/') +
-      (parsedURL.b ? '/:id' : '') +
-      (parsedURL.c ? '/' + parsedURL.c : '');
-    Logger.info('Router', 'Got location', location);
+    const viewEntry =
+      (urlSegments[0] ? '/' + urlSegments[0] : '/') +
+      (urlSegments[1] ? '/:id' : '') +
+      (urlSegments[2] ? '/' + urlSegments[3] : '');
+    Logger.info('Router', 'Got view entry', viewEntry);
 
-    const viewInfo = this.viewInfoList[location] || this.viewInfoList[404];
+    const viewInfo = this.viewInfoList[viewEntry] || this.viewInfoList[404];
     Logger.info('Router', 'Got view info and fetching', viewInfo);
 
-    import(viewInfo).then((_view) => {
+    import(`./views/${viewInfo}-view.ts`).then((_view) => {
+      if (!this.viewEl) {
+        Logger.error('Router', 'Need view element to render in');
+        return;
+      }
+
       const view = _view.default as View;
 
-      const renderedHTML = view.render(location, parsedURL);
+      const renderedHTML = view.render({
+        subpath: subpath,
+        viewEntry: viewEntry,
+        urlSegments: urlSegments,
+      });
 
       this.viewEl.innerHTML = renderedHTML;
-      view.afterRender?.(location, parsedURL);
+      view.afterRender?.({
+        subpath: subpath,
+        viewEntry: viewEntry,
+        urlSegments: urlSegments,
+      });
 
       document.title = document.querySelector('h1')?.textContent!;
       this.progressEl?.setAttribute('hidden', '');
-      this.updateLinkState(location);
+      // FIXME: /comps/aaa doesn't match /comps/:id
+      this.updateLinkState(viewEntry);
     });
   }
 

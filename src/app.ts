@@ -1,11 +1,11 @@
 import { Router } from './router.js';
 
 const viewsInfoList = {
-  404: './views/404-view.ts',
-  '/': './views/home-view.ts',
-  '/about': './views/about-view.ts',
-  '/search': './views/search-view.ts',
-  '/search/:id': './views/search-view.ts',
+  404: '404',
+  '/': 'home',
+  '/about': 'about',
+  '/search': 'search',
+  '/search/:id': 'search',
 };
 
 export const router = new Router({
@@ -13,5 +13,3 @@ export const router = new Router({
   viewEl: document.querySelector('#router-view') as HTMLElement,
   progressEl: document.querySelector('#router-progress') as HTMLElement,
 });
-
-import './styles/main.scss';

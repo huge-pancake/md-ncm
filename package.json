@@ -10,24 +10,20 @@
   "license": "MIT",
   "author": "huge-pancake",
   "scripts": {
-    "build": "rollup --config",
-    "build:watch": "rollup --config --watch",
-    "dev": "wds",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
     "lint": "pnpm lint:eslint && pnpm lint:prettier",
     "lint:eslint": "eslint --fix",
     "lint:prettier": "prettier . --check",
     "prettier": "prettier . --write"
   },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^15.0.2",
-    "@rollup/plugin-replace": "^5.0.2",
-    "@rollup/plugin-terser": "^0.4.1",
-    "@rollup/plugin-typescript": "^11.1.0",
-    "@web/rollup-plugin-html": "^2.0.0",
     "eslint": "^8.39.0",
     "prettier": "^2.8.8",
-    "rollup": "^3.21.1",
-    "sass": "^1.62.1"
+    "sass": "^1.62.1",
+    "typescript": "^5.0.4",
+    "vite": "^4.3.3"
   },
   "dependencies": {
     "rollup-plugin-postcss": "^4.0.2"
