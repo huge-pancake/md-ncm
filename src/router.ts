@@ -2,7 +2,12 @@ import { render } from 'lit';
 
 import Logger from './logger.js';
 
-export type ViewInfoList = { [str: string]: string };
+export type ViewInfoList = {
+  [path: string]: {
+    view: string;
+    hideProgress?: 'render' | 'afterRender';
+  };
+};
 
 export type ViewRendererParams = {
   subpath: string;
@@ -21,25 +26,25 @@ export class Router {
   progressEl: HTMLElement | undefined;
 
   constructor({
-    viewInfoList: pages,
-    viewEl: view,
-    progressEl: progressbar,
+    viewInfoList: viewInfoList,
+    viewEl: viewEl,
+    progressEl: progressEl,
   }: {
     viewInfoList: ViewInfoList;
     viewEl: HTMLElement;
     progressEl?: HTMLElement;
   }) {
-    this.viewInfoList = pages;
-    this.viewEl = view;
-    this.progressEl = progressbar;
+    this.viewInfoList = viewInfoList;
+    this.viewEl = viewEl;
+    this.progressEl = progressEl;
 
-    window.addEventListener('click', this.handleWindowClick.bind(this));
+    window.addEventListener('click', this._handleWindowClick.bind(this));
     window.addEventListener('popstate', this.render);
 
     this.render();
   }
 
-  updateLinkState(location: string): void {
+  _updateLinkState(location: string): void {
     document
       .querySelectorAll('[router-active]')
       .forEach((el) => el.removeAttribute('router-active'));
@@ -58,7 +63,9 @@ export class Router {
       return;
     }
 
-    this.progressEl?.removeAttribute('hidden');
+    this.showProgress();
+
+    // trying to find view entry
 
     const subpath = location.pathname.slice(1).toLowerCase();
     const urlSegments = subpath.split('/');
@@ -74,7 +81,9 @@ export class Router {
     const viewInfo = this.viewInfoList[viewEntry] || this.viewInfoList[404];
     Logger.info('Router', 'Got view info and fetching', viewInfo);
 
-    import(`./views/${viewInfo}-view.ts`).then((_view) => {
+    // fetch view and render
+
+    import(`./views/${viewInfo.view}-view.ts`).then((_view) => {
       if (!this.viewEl) {
         Logger.error('Router', 'Need view element to render in');
         return;
@@ -91,6 +100,10 @@ export class Router {
       };
 
       render(renderView(), this.viewEl);
+
+      this.syncTitle();
+      if (viewInfo.hideProgress !== 'afterRender') this.hideProgress();
+
       view
         .afterRender?.({
           subpath: subpath,
@@ -99,13 +112,16 @@ export class Router {
         })
         .then((needRerender) => {
           if (needRerender) {
+            Logger.info('Router', 'View requested rerender');
+
             render(renderView(), this.viewEl!);
+
+            this.syncTitle();
+            if (viewInfo.hideProgress === 'afterRender') this.hideProgress();
           }
         });
 
-      document.title = document.querySelector('h1')?.textContent!;
-      this.progressEl?.setAttribute('hidden', '');
-      this.updateLinkState('/' + subpath);
+      this._updateLinkState('/' + subpath);
     });
   }
 
@@ -115,7 +131,7 @@ export class Router {
   }
 
   // NOTE: Maybe cause perf problem
-  handleWindowClick(e: MouseEvent): void {
+  private _handleWindowClick(e: MouseEvent): void {
     let temp: HTMLElement | null = e.target as HTMLElement;
     do {
       if (temp.hasAttribute('router-link')) {
@@ -124,5 +140,15 @@ export class Router {
         break;
       } else temp = temp.parentNode as HTMLElement | null;
     } while (temp?.hasAttribute);
+  }
+
+  syncTitle() {
+    document.title = document.querySelector('h1')?.textContent || '';
+  }
+  showProgress() {
+    this.progressEl?.removeAttribute('hidden');
+  }
+  hideProgress() {
+    this.progressEl?.setAttribute('hidden', '');
   }
 }
