@@ -87,11 +87,13 @@ export class Router {
       });
 
       this.viewEl.innerHTML = renderedHTML;
-      view.afterRender?.({
-        subpath: subpath,
-        viewEntry: viewEntry,
-        urlSegments: urlSegments,
-      });
+      setTimeout(() => {
+        view.afterRender?.({
+          subpath: subpath,
+          viewEntry: viewEntry,
+          urlSegments: urlSegments,
+        });
+      }, 50);
 
       document.title = document.querySelector('h1')?.textContent!;
       this.progressEl?.setAttribute('hidden', '');

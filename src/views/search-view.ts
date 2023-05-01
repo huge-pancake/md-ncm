@@ -1,4 +1,4 @@
-import { MdOutlinedTextField } from '@material/web/textfield/outlined-text-field.js';
+import '@material/web/iconbutton/standard-icon-button.js';
 import '@material/web/list/list.js';
 import '@material/web/list/list-item.js';
 
@@ -23,7 +23,15 @@ export default {
         id="search-input"
         label="Search"
         value="${decodeURI(params.urlSegments[1] || '')}"
-      ></md-outlined-text-field>
+      >
+        <md-standard-icon-button
+          id="search-button"
+          slot="trailingicon"
+          aria-label="Start search"
+        >
+          search
+        </md-standard-icon-button>
+      </md-outlined-text-field>
 
       <md-list id="search-list">
         ${params.urlSegments[1] ? 'Loading...' : ''}
@@ -31,15 +39,23 @@ export default {
     `;
   },
   async afterRender(params: ViewRendererParams) {
+    const searchButtonEl = document.querySelector(
+      '#search-button'
+    ) as HTMLButtonElement;
+    searchButtonEl.addEventListener('click', (_e: Event) => {
+      router.route(`/search/${searchInputEl.value}`);
+    });
+
     const searchInputEl = document.querySelector(
       '#search-input'
-    ) as MdOutlinedTextField;
-    searchInputEl.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.code === 'Enter') {
+    ) as HTMLInputElement;
+    searchInputEl.addEventListener('keydown', (_e: KeyboardEvent) => {
+      if (_e.code === 'Enter') {
         router.route(`/search/${searchInputEl.value}`);
       }
     });
     searchInputEl.focus();
+    searchInputEl.select();
 
     if (params.urlSegments[1]) {
       const searchListEl = document.querySelector(

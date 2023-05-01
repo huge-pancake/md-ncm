@@ -134,6 +134,12 @@ md-linear-progress {
   }
 }
 
+md-outlined-text-field md-standard-icon-button {
+  min-width: 40px;
+  margin-top: -8px;
+  margin-inline-start: -8px;
+}
+
 #search-input {
   margin: 20px 0 10px 0;
 }
