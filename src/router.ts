@@ -1,3 +1,5 @@
+import { render } from 'lit';
+
 import Logger from './logger.js';
 
 export type ViewInfoList = { [str: string]: string };
@@ -10,7 +12,7 @@ export type ViewRendererParams = {
 
 export type View = {
   render(params: ViewRendererParams): string;
-  afterRender(params: ViewRendererParams): void;
+  afterRender(params: ViewRendererParams): Promise<boolean>;
 };
 
 export class Router {
@@ -80,20 +82,26 @@ export class Router {
 
       const view = _view.default as View;
 
-      const renderedHTML = view.render({
-        subpath: subpath,
-        viewEntry: viewEntry,
-        urlSegments: urlSegments,
-      });
-
-      this.viewEl.innerHTML = renderedHTML;
-      setTimeout(() => {
-        view.afterRender?.({
+      const renderView = () => {
+        return view.render({
           subpath: subpath,
           viewEntry: viewEntry,
           urlSegments: urlSegments,
         });
-      }, 50);
+      };
+
+      render(renderView(), this.viewEl);
+      view
+        .afterRender?.({
+          subpath: subpath,
+          viewEntry: viewEntry,
+          urlSegments: urlSegments,
+        })
+        .then((needRerender) => {
+          if (needRerender) {
+            render(renderView(), this.viewEl!);
+          }
+        });
 
       document.title = document.querySelector('h1')?.textContent!;
       this.progressEl?.setAttribute('hidden', '');
