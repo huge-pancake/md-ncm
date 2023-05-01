@@ -39,7 +39,7 @@ export class Router {
     this.progressEl = progressEl;
 
     window.addEventListener('click', this._handleWindowClick.bind(this));
-    window.addEventListener('popstate', this.render);
+    window.addEventListener('popstate', this.render.bind(this));
 
     this.render();
   }
