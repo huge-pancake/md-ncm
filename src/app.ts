@@ -23,4 +23,7 @@ import {
   themeFromSourceColor,
 } from '@material/material-color-utilities';
 
-applyTheme(themeFromSourceColor(argbFromHex('#114514')), { dark: true });
+applyTheme(themeFromSourceColor(argbFromHex('#d93444')), {
+  target: document.documentElement,
+  brightnessSuffix: true,
+});
