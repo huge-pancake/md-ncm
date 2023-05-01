@@ -3,6 +3,7 @@ import { html } from 'lit';
 import '@material/web/iconbutton/standard-icon-button.js';
 import '@material/web/list/list.js';
 import '@material/web/list/list-item.js';
+import '@material/web/textfield/outlined-text-field.js';
 
 import Logger from '../logger.js';
 import { ViewRendererParams } from '../router.js';

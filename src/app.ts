@@ -1,6 +1,5 @@
 import '@material/web/button/text-button.js';
 import '@material/web/icon/icon.js';
-import '@material/web/textfield/outlined-text-field.js';
 import '@material/web/linearprogress/linear-progress.js';
 
 import { Router } from './router.js';
@@ -18,5 +17,10 @@ export const router = new Router({
   progressEl: document.querySelector('#router-progress') as HTMLElement,
 });
 
-// @ts-ignore
-globalThis.router = router;
+import {
+  applyTheme,
+  argbFromHex,
+  themeFromSourceColor,
+} from '@material/material-color-utilities';
+
+applyTheme(themeFromSourceColor(argbFromHex('#114514')), { dark: true });

@@ -1,15 +1,8 @@
-[data-md-theme] {
+:root {
   --md-sys-typo-display-font-family: 'Roboto', sans-serif;
   --md-sys-typo-text-font-family: 'Roboto', sans-serif;
   --md-sys-typo-mono-font-family: 'Roboto', monospace;
 
-  --md-sys-typo-hero-font-family: var(--md-sys-typo-display-font-family);
-  --md-sys-typo-hero-font-size: 112px;
-  --md-sys-typo-hero-line-height: 1;
-  --md-sys-typo-hero-font-weight: 475;
-  --md-sys-typo-hero-font-variation-GRAD: 0;
-  --md-sys-typo-hero-font-variation-opsz: 18;
-  --md-sys-typo-hero-letter-spacing: 0;
   --md-sys-typo-display-xl-font-family: var(--md-sys-typo-display-font-family);
   --md-sys-typo-display-xl-font-size: 88px;
   --md-sys-typo-display-xl-line-height: 96px;
@@ -437,7 +430,7 @@
     margin: -1px;
     border: 1px solid var(--md-sys-color-primary);
     outline: 0;
-    box-shadow: inset 0 0 0 1px var(--md-sys-color-surface-0);
+    box-shadow: inset 0 0 0 1px var(--md-sys-color-shadow);
   }
   a:hover:focus {
     border: 1px solid var(--md-sys-color-on-primary-container);
@@ -461,7 +454,7 @@
       'opsz' var(--md-sys-typo-code-l-font-variation-opsz);
     padding: 0 2px;
     border-radius: 2px;
-    background: var(--md-sys-color-surface-2);
+    background: var(--md-sys-color-surface-variant);
   }
   ul {
     list-style: initial;

@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@material/material-color-utilities':
+    specifier: ^0.2.6
+    version: registry.npmmirror.com/@material/material-color-utilities@0.2.6
   '@material/web':
     specifier: 1.0.0-pre.7
     version: registry.npmmirror.com/@material/web@1.0.0-pre.7
@@ -353,6 +356,12 @@ packages:
     version: 1.6.1
     dependencies:
       '@lit-labs/ssr-dom-shim': registry.npmmirror.com/@lit-labs/ssr-dom-shim@1.1.1
+    dev: false
+
+  registry.npmmirror.com/@material/material-color-utilities@0.2.6:
+    resolution: {integrity: sha512-pMdkH7PvuJQS1q9igiPFfrS04Zu1feDXOVV69uWe2kr+RcK+7v3OylIYMwJDIwip1pFdGyTY4KkMy6vPIA/uSw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@material/material-color-utilities/-/material-color-utilities-0.2.6.tgz}
+    name: '@material/material-color-utilities'
+    version: 0.2.6
     dev: false
 
   registry.npmmirror.com/@material/web@1.0.0-pre.7:
