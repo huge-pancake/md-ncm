@@ -127,6 +127,7 @@ md-text-button[router-active] {
 
 md-linear-progress {
   --md-linear-progress-track-shape: 9999px;
+  --md-linear-progress-track-color: var(--md-sys-elev-surface-5);
   transition: opacity 15ms linear 0s;
 
   &[hidden] {
