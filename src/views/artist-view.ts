@@ -33,7 +33,7 @@ export default {
     const hotSongs = this._jsonData!.hotSongs as HotSong[];
 
     return html`
-      <md-list class="mn-music-list">
+      <md-list class="mn-list">
         ${this._jsonData
           ? hotSongs.map(
               (song) => html`

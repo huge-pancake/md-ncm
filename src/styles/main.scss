@@ -35,7 +35,7 @@ md-outlined-text-field md-standard-icon-button {
   margin: 20px 0 10px 0;
 }
 
-.mn-music-list {
+.mn-list {
   border-radius: 16px;
 
   md-list-item {
@@ -50,6 +50,10 @@ md-outlined-text-field md-standard-icon-button {
 
     &:last-child {
       --_list-item-container-shape: 4px 4px 24px 24px;
+    }
+
+    &:first-child:last-child {
+      --_list-item-container-shape: 24px;
     }
   }
 }

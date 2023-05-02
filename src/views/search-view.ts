@@ -40,7 +40,7 @@ export default {
   },
   renderList() {
     return html`
-      <md-list class="mn-music-list" id="search-list">
+      <md-list class="mn-list" id="search-list">
         ${this._jsonData
           ? (this._jsonData.result.songs as Song[]).map(
               (song) => html`
