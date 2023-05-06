@@ -19,15 +19,15 @@
     "prettier": "prettier . --write"
   },
   "devDependencies": {
-    "eslint": "^8.39.0",
+    "eslint": "^8.40.0",
     "prettier": "^2.8.8",
     "sass": "^1.62.1",
     "typescript": "^5.0.4",
-    "vite": "^4.3.3"
+    "vite": "^4.3.5"
   },
   "dependencies": {
     "@material/material-color-utilities": "^0.2.6",
     "@material/web": "1.0.0-pre.7",
-    "lit": "^2.7.3"
+    "lit": "^2.7.4"
   }
 }
