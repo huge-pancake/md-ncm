@@ -1,6 +1,6 @@
 import { render } from 'lit';
 
-import Logger from './logger.js';
+import Logger from './utils/logger.js';
 
 export type ViewInfoList = {
   [path: string]: {

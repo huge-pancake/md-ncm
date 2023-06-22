@@ -1,6 +1,13 @@
 import '@material/web/button/text-button.js';
 import '@material/web/icon/icon.js';
 import '@material/web/linearprogress/linear-progress.js';
+import '@material/web/iconbutton/standard-icon-button.js';
+import '@material/web/dialog/dialog.js';
+
+import type { MdDialog } from '@material/web/dialog/dialog.js';
+import type { MdStandardIconButton } from '@material/web/iconbutton/standard-icon-button.js';
+
+import './components/theme-picker.js';
 
 import { Router } from './router.js';
 
@@ -18,13 +25,11 @@ export const router = new Router({
   progressEl: document.querySelector('#router-progress') as HTMLElement,
 });
 
-import {
-  applyTheme,
-  argbFromHex,
-  themeFromSourceColor,
-} from '@material/material-color-utilities';
+const themePickerTrigger: MdStandardIconButton = document.querySelector(
+  '#theme-picker-trigger'
+)!;
+const themePicker: MdDialog = document.querySelector('#theme-picker')!;
 
-applyTheme(themeFromSourceColor(argbFromHex('#d93444')), {
-  target: document.documentElement,
-  brightnessSuffix: true,
+themePickerTrigger.addEventListener('click', (_ev) => {
+  themePicker.open = true;
 });

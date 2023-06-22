@@ -12,6 +12,15 @@
     />
     <script type="module" src="./src/app.ts"></script>
     <link rel="stylesheet" href="./src/styles/main.scss" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Google+Sans:opsz,wght@17..18,400;17..18,500;17..18,700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+    />
   </head>
   <body data-md-theme="light">
     <header>
@@ -32,6 +41,12 @@
         Settings
       </md-text-button>
 
+      <span class="spacer"></span>
+
+      <md-standard-icon-button id="theme-picker-trigger">
+        <md-icon>palette</md-icon>
+      </md-standard-icon-button>
+
       <md-linear-progress
         id="router-progress"
         indeterminate
@@ -40,5 +55,15 @@
     <main>
       <div id="router-view"></div>
     </main>
+
+    <md-dialog width="300" id="theme-picker">
+      <div slot="header">Theme</div>
+
+      <theme-picker></theme-picker>
+
+      <md-text-button slot="footer" dialogAction="close">
+        Close
+      </md-text-button>
+    </md-dialog>
   </body>
 </html>

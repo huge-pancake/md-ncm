@@ -5,7 +5,7 @@ import '@material/web/list/list.js';
 import '@material/web/list/list-item.js';
 import '@material/web/textfield/outlined-text-field.js';
 
-import Logger from '../logger.js';
+import Logger from '../utils/logger.js';
 import { ViewRendererParams } from '../router.js';
 import { request, Song } from '../api.js';
 import { router } from '../app.js';
