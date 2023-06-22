@@ -31,7 +31,7 @@ export default {
           aria-label="Start search"
           @click="${this._handleButtonClick.bind(this)}"
         >
-          search
+          <md-icon>search</md-icon>
         </md-standard-icon-button>
       </md-outlined-text-field>
 
