@@ -4,7 +4,6 @@ import {
   hexFromArgb,
   Hct,
   SchemeTonalSpot,
-  DynamicColor,
   DynamicScheme,
   SchemeFidelity,
   SchemeVibrant,
@@ -12,7 +11,6 @@ import {
   SchemeNeutral,
   SchemeMonochrome,
   SchemeContent,
-  Scheme as MatScheme,
   CorePalette,
 } from '@material/material-color-utilities';
 import type { Scheme } from '../components/theme-picker.js';
@@ -88,51 +86,50 @@ export function themeFromSourceColor(
     (typeof color !== 'object' && scheme === 'dynamic')
   ) {
     throw new Error('color / scheme type mismatch');
-    return;
   }
   /* import and use other schemas from m-c-u for the scheme you want, but this is the "default"
      https://github.com/material-foundation/material-color-utilities/tree/main/typescript/scheme
    */
-  let colorScheme: MatScheme;
+  let colorScheme: DynamicScheme;
   if (scheme === 'tonal') {
     colorScheme = new SchemeTonalSpot(
-      Hct.fromInt(argbFromHex(color)),
+      Hct.fromInt(argbFromHex(color as string)),
       isDark,
       contrast
     );
   } else if (scheme === 'fidelity') {
     colorScheme = new SchemeFidelity(
-      Hct.fromInt(argbFromHex(color)),
+      Hct.fromInt(argbFromHex(color as string)),
       isDark,
       contrast
     );
   } else if (scheme === 'vibrant') {
     colorScheme = new SchemeVibrant(
-      Hct.fromInt(argbFromHex(color)),
+      Hct.fromInt(argbFromHex(color as string)),
       isDark,
       contrast
     );
   } else if (scheme === 'expressive') {
     colorScheme = new SchemeExpressive(
-      Hct.fromInt(argbFromHex(color)),
+      Hct.fromInt(argbFromHex(color as string)),
       isDark,
       contrast
     );
   } else if (scheme === 'content') {
     colorScheme = new SchemeContent(
-      Hct.fromInt(argbFromHex(color)),
+      Hct.fromInt(argbFromHex(color as string)),
       isDark,
       contrast
     );
   } else if (scheme === 'neutral') {
     colorScheme = new SchemeNeutral(
-      Hct.fromInt(argbFromHex(color)),
+      Hct.fromInt(argbFromHex(color as string)),
       isDark,
       contrast
     );
   } else if (scheme === 'monochrome') {
     colorScheme = new SchemeMonochrome(
-      Hct.fromInt(argbFromHex(color)),
+      Hct.fromInt(argbFromHex(color as string)),
       isDark,
       contrast
     );
@@ -171,10 +168,10 @@ export function themeFromSourceColor(
     });
   }
 
-  return themeFromScheme(colorScheme);
+  return themeFromScheme(colorScheme!);
 }
 
-export function themeFromScheme(colorScheme: MatScheme) {
+export function themeFromScheme(colorScheme: DynamicScheme) {
   const theme: { [key: string]: string } = {};
 
   for (const [key, value] of Object.entries(materialColors)) {
@@ -203,11 +200,13 @@ export function applyThemeString(
   themeString: string,
   ssName: string
 ) {
+  // @ts-ignore
   let ss = window[ssName] as CSSStyleSheet | undefined;
 
   if (!ss) {
     ss = new CSSStyleSheet();
     doc.adoptedStyleSheets.push(ss);
+    // @ts-ignore
     window[ssName] = ss;
   }
 
